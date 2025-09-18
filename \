@@ -1,0 +1,39 @@
+# Bandit level 06 -> 07 
+
+description: The password for the next level is stored somewhere on the server and has all of the following properties:
+
+    owned by user bandit7
+    owned by group bandit6
+    33 bytes in size
+
+## STEPS 
+```ls 
+output: 
+--- 
+``` cd .. 
+output: /home 
+---
+``` find -type f -size 33c -user bandit7 -group bandit6
+output: andit6@bandit:/$ find -type f -size 33c -user bandit7 -group bandit6
+find: ‘./sys/kernel/tracing/osnoise’: Permission denied
+find: ‘./sys/kernel/tracing/hwlat_detector’: Permission denied
+.
+.
+.
+find: ‘./home/bandit28-git’: Permission denied
+find: ‘./home/bandit29-git’: Permission denied
+find: ‘./home/drifter8/chroot’: Permission denied
+---
+``` cd ..
+output: / 
+---
+``` find -type f -size 33c -user bandit7 -group bandit6
+output: 
+...
+./var/lib/dpkg/info/bandit7.password
+...
+--- 
+``` cat ./var/lib/dpkg/info/bandit7.password
+output: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+
+**result:** morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
